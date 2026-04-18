@@ -1,0 +1,9 @@
+2026-04-18 10:36:05.233719-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+SELECT id, nome, codigoTipoDocumento, numeroDocumento, timestampAtualizacao FROM Usuario OFFSET ? ROWS FETCH FIRST 5 ROWS ONLY [42104-240]
+2026-04-18 10:36:57.913188-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+SELECT id, nome, codigoTipoDocumento, numeroDocumento, timestampAtualizacao FROM Usuario  [42104-240]
+2026-04-18 10:38:21.548323-03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USUARIO" not found (this database is empty); SQL statement:
+SELECT id, nome, codigoTipoDocumento, numeroDocumento, timestampAtualizacao FROM Usuario  [42104-240]
