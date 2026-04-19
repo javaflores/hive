@@ -1,4 +1,4 @@
-package br.com.bbts.hive.tasks;
+package br.com.bbts.hive.tasks.dto;
 
 import java.io.Serial;
 import java.io.Serializable;

@@ -20,6 +20,7 @@ import net.datafaker.Faker;
 @ApplicationScoped
 public class DadosClientesService {
 
+	// Feito assim só para exemplificar.
 	private final static int TIPO_CPF = 1;
 	private final static int TIPO_CNPJ = 2;
 	private final static int TIPO_PASSAPORTE = 3;
@@ -51,6 +52,7 @@ public class DadosClientesService {
 		clienteDao.incluirDadosClienteShopee(clienteShopee);
 	}
 
+	// Feito assim somente para testes do tipo de documento.
 	private Integer recuperarTipoDocumento(String numeroDocumento) {
 
 		// Busca pelo tamanho do numero do documento o seu tipo.

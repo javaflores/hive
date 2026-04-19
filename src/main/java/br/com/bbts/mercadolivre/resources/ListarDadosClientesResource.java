@@ -34,7 +34,7 @@ public class ListarDadosClientesResource {
 
 	@GET
 	@Path("/novos/cadastros")
-	@Operation(summary = "[MERCADO LIVRE] - Lista os dados dos novos cadatros [Dados Mockado]", description = "Lista com os dados dos clientes cadastrados no mercado livre.")
+	@Operation(summary = "[MERCADO LIVRE] - Busca os dados dos novos cadatros [Dados Mockado]", description = "Busca com os dados dos clientes cadastrados no mercado livre.")
 	public Response buscarNovosClientes() throws Exception {
 
 		logger.info("Início da listagem dos dados dos clientes do mercado livre.");

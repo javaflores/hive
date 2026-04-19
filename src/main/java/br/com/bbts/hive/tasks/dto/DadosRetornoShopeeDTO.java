@@ -1,5 +1,7 @@
-package br.com.bbts.hive.tasks;
+package br.com.bbts.hive.tasks.dto;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,13 +9,16 @@ import java.util.List;
 /**
  * @author Ricardo da Silva Flores (BBTS)
  */
-public class DadosRetornoMercadoLivreDTO {
+public class DadosRetornoShopeeDTO implements Serializable {
+
+	@Serial
+	private static final long serialVersionUID = 1L;
 
 	private String indicadorDeContinuidade;
 
 	private BigDecimal proximoNumeroSolicitacao;
 
-	private List<DadosClienteMercadoLivreDTO> listaClientesMercadoLivre;
+	private List<DadosClienteShopeeDTO> listaClientesShopee;
 
 	public String getIndicadorDeContinuidade() {
 		return indicadorDeContinuidade;
@@ -31,15 +36,15 @@ public class DadosRetornoMercadoLivreDTO {
 		this.proximoNumeroSolicitacao = proximoNumeroSolicitacao;
 	}
 
-	public List<DadosClienteMercadoLivreDTO> getListaClientesMercadoLivre() {
-		if (listaClientesMercadoLivre == null) {
-			listaClientesMercadoLivre = new ArrayList<DadosClienteMercadoLivreDTO>();
+	public List<DadosClienteShopeeDTO> getListaClientesShopee() {
+		if (listaClientesShopee == null) {
+			listaClientesShopee = new ArrayList<DadosClienteShopeeDTO>();
 		}
-		return listaClientesMercadoLivre;
+		return listaClientesShopee;
 	}
 
-	public void setListaClientesMercadoLivre(List<DadosClienteMercadoLivreDTO> listaClientesMercadoLivre) {
-		this.listaClientesMercadoLivre = listaClientesMercadoLivre;
+	public void setListaClientesShopee(List<DadosClienteShopeeDTO> listaClientesShopee) {
+		this.listaClientesShopee = listaClientesShopee;
 	}
 
 }

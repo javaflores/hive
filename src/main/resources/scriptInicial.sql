@@ -18,3 +18,19 @@ create table ClienteShopee (
     timestampAtualizacao timestamp(6),
     primary key (id)
 );
+
+create table CLIENTES_EXTERNOS (
+    ID int AUTO_INCREMENT PRIMARY KEY,
+    NR_SEQUENCIAL_EXTERNO decimal(17, 0),
+    CD_EMPRESA_EXTERNO integer,
+    NM_EMPRESA_EXTERNO varchar(255),
+    DS_NOME varchar(255) NOT NULL,
+    CD_TIPO_DOCUMENTO integer,
+    NR_DOCUMENTO varchar(255),
+    DT_NASCIMENTO date,
+    NM_PAI varchar(255),
+    NM_MAE varchar(255),
+    TP_SEXO char(1) NOT NULL,
+    TS_ULT_ATUALIZACAO timestamp(6),
+    primary key (ID)
+);

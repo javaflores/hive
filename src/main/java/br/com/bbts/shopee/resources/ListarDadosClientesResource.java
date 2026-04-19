@@ -1,7 +1,6 @@
 package br.com.bbts.shopee.resources;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -45,7 +44,7 @@ public class ListarDadosClientesResource {
 	@Path("/gerar")
 	@Transactional(rollbackOn = Exception.class)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Operation(summary = "[SHOPEE] - Gera os dados do cliente", description = "Gera os dados do cliente a ser cadastrado na shopee.")
+	@Operation(summary = "[SHOPEE] - Cadastra os dados do cliente informando o nome e documento.", description = "Cadastra os dados do cliente a ser cadastrado na shopee.")
 	public Response gerarDadosUsuario(DadosRequisicaoDTO dadosClienteDTO) throws Exception {
 
 		// Salva uma publicacao completa.
@@ -57,7 +56,7 @@ public class ListarDadosClientesResource {
 
 	@GET
 	@Path("/buscar/{numeroSolicitacaoSequencial}")
-	@Operation(summary = "[SHOPEE] - Lista os dados dos clientes", description = "Lista com os dados dos clientes cadastrados na shopee.")
+	@Operation(summary = "[SHOPEE] - Busca os dados dos clientes a partir do número de solicitação", description = "Busca com os dados dos clientes cadastrados na shopee pelo numero de solicitação informado.")
 	public Response listarDadosClientes(
 			@PathParam("numeroSolicitacaoSequencial") BigDecimal numeroSolicitacaoSequencial) throws Exception {
 
@@ -89,7 +88,6 @@ public class ListarDadosClientesResource {
 		}
 
 		// Preenchendo a resposta.
-		List<DadosRetornoDTO> listaDadosClientes = new ArrayList<DadosRetornoDTO>();
 		listaDadosFiltrados.forEach(dadoUsuario -> {
 			var cliente = new ClienteShopeeDTO();
 			cliente.setNumeroSolicitacao(dadoUsuario.getNumeroSolicitacao());
@@ -104,7 +102,7 @@ public class ListarDadosClientesResource {
 			retorno.getListaClientesShopee().add(cliente);
 		});
 
-		logger.info("Lista de dados retornadas: " + listaDadosClientes.size());
+		logger.info("Lista de dados retornadas: " + retorno.getListaClientesShopee().size());
 
 		return Response.status(Status.OK).entity(retorno).build();
 	}
