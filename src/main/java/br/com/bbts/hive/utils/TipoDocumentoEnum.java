@@ -1,18 +1,20 @@
-package br.com.bbts.hive.enums;
+package br.com.bbts.hive.utils;
 
 /**
  * @author Ricardo da Silva Flores (BBTS)
  */
-public enum TipoEmpresaEnum {
+public enum TipoDocumentoEnum {
 	
-    MERCADO_LIVRE("Mercado Livre do Brasil", 1),
-    SHOPEE("Shopee LTDA", 2),
+    CPF("CPF", 1),
+    CNPJ("CNPJ", 2),
+    IDENTIDADE("Identidade", 3),
+    PASSAPORTE("Passaporte", 4),
     NONE("Não parametrizado", 99);
 
 	private Integer codigo;
 	private String descricao;
 
-	private TipoEmpresaEnum(String descricao, int codigo) {
+	private TipoDocumentoEnum(String descricao, int codigo) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 	}
@@ -34,12 +36,12 @@ public enum TipoEmpresaEnum {
 	}
 
 	public static String getDescricaoPorCodigo(int codigo) {
-		for (TipoEmpresaEnum tipo : TipoEmpresaEnum.values()) {
+		for (TipoDocumentoEnum tipo : TipoDocumentoEnum.values()) {
 			if(tipo.getCodigo() == codigo) {
 				return tipo.getDescricao();
 			}
 		}
-		return TipoEmpresaEnum.NONE.getDescricao();
+		return TipoDocumentoEnum.NONE.getDescricao();
 	}
 
 }

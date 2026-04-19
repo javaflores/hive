@@ -19,6 +19,7 @@ import jakarta.ws.rs.core.MediaType;
  */
 @Path("/task/mercadolivre")
 @Produces(MediaType.APPLICATION_JSON)
+@Tag(name = "TASKS HIVE - MOTOR DE BUSCA DADOS DOS CLIENTES")
 public class TaskBuscarDadosClientesNoMercadoLivre {
 	
 	@Inject
@@ -33,7 +34,6 @@ public class TaskBuscarDadosClientesNoMercadoLivre {
 
 	@GET
 	@Path("/buscar/dados/clientes")
-	@Tag(name = "TASKS HIVE - BUSCAR DADOS DOS CLIENTES NO MERCADO LIVRE")
 	@Operation(summary = "Busca os dados dos clientes no mercado livre", description = "Busca com os dados dos clientes cadastrados no mercado livre.")
 	//@Scheduled(every = "10s", concurrentExecution = Scheduled.ConcurrentExecution.SKIP)
 	public void executeTask() throws Exception {
@@ -46,7 +46,11 @@ public class TaskBuscarDadosClientesNoMercadoLivre {
 		// Criando json para exibir no log para visualização dos dados.
 		ObjectMapper mapper = new ObjectMapper();
 		String objetoJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dadosRetorno);
-
 		logger.info("Lista de dados retornados do mercado livre: \n" + objetoJson);
+		
+		// Salva os dados retornados na shopee para dentro do hive.
+		hiveService.salvarDadosClientesExternosDoMercadoLivre(dadosRetorno);
+		
+		logger.infof("Quantidade de itens gravados no hive: " + dadosRetorno.getListaClientesMercadoLivre().size());
 	}
 }

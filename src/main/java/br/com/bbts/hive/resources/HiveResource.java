@@ -4,8 +4,6 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.jboss.logging.Logger;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import br.com.bbts.hive.services.HiveService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
@@ -36,13 +34,10 @@ public class HiveResource {
 
 		logger.info("Início da listagem dos dados dos clientes da shopee.");
 
+		// Buscando os dados do hive.
 		var listaDadosClientes = hiveService.listarDadosClientesNoHive();
 
-		// Criando json para exibir no log para visualização dos dados.
-		ObjectMapper mapper = new ObjectMapper();
-		String objetoJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(listaDadosClientes);
-
-		logger.info("Lista de dados retornadas: \n" + objetoJson);
+		logger.info("Lista de dados retornadas: \n" + listaDadosClientes);
 		
 		return Response.status(Status.OK).entity(listaDadosClientes).build();
 	}

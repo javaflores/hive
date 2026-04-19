@@ -15,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "CLIENTES_EXTERNOS")
@@ -66,6 +67,12 @@ public class ClientesExternos extends PanacheEntityBase {
 
 	@Column(name = "TS_ULT_ATUALIZACAO")
 	private LocalDateTime timestampUltimaAtualizacao;
+	
+	@Transient
+	private String nomeTipoDocumento;
+	
+	@Transient
+	private String nomeTipoSexo;
 
 	public static Uni<Void> incluir(List<ClientesExternos> clientesExternos) {
 		return Uni.createFrom().voidItem().invoke(() -> ClientesExternos.persist(clientesExternos.stream().toList()));
@@ -165,6 +172,22 @@ public class ClientesExternos extends PanacheEntityBase {
 
 	public void setTimestampUltimaAtualizacao(LocalDateTime timestampUltimaAtualizacao) {
 		this.timestampUltimaAtualizacao = timestampUltimaAtualizacao;
+	}
+
+	public String getNomeTipoDocumento() {
+		return nomeTipoDocumento;
+	}
+
+	public void setNomeTipoDocumento(String nomeTipoDocumento) {
+		this.nomeTipoDocumento = nomeTipoDocumento;
+	}
+
+	public String getNomeTipoSexo() {
+		return nomeTipoSexo;
+	}
+
+	public void setNomeTipoSexo(String nomeTipoSexo) {
+		this.nomeTipoSexo = nomeTipoSexo;
 	}
 
 }
