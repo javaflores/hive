@@ -1,4 +1,4 @@
-package br.com.bbts.shopee.dto;
+package br.com.bbts.mercadolivre.dto;
 
 import java.io.Serial;
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package br.com.bbts.mercadolivre.resources;
+package br.com.bbts.shopee.resources;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * @author Ricardo da Silva Flores (BBTS)
  */
-public class ClienteMercadoLivreDTO implements Serializable {
+public class ClienteShopeeDTO implements Serializable {
 
 	@Serial
 	private static final long serialVersionUID = 1L;

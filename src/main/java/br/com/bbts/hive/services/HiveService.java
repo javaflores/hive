@@ -10,7 +10,8 @@ import org.apache.commons.lang.StringUtils;
 
 import br.com.bbts.hive.entidades.ClientesExternos;
 import br.com.bbts.hive.enums.TipoEmpresaEnum;
-import br.com.bbts.hive.tasks.dto.DadosClienteMercadoLivreDTO;
+import br.com.bbts.hive.tasks.dto.DadosClienteShopeeDTO;
+import io.smallrye.mutiny.Uni;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 
@@ -28,8 +29,7 @@ public class HiveService {
 		return ClientesExternos.listAll();
 	}
 
-	@Transactional
-	public void salvarDadosClientesExternosDoMercadoLivre(List<DadosClienteMercadoLivreDTO> listaDadosRetorno) {
+	public void salvarDadosClientesExternosDaShopee(List<DadosClienteShopeeDTO> listaDadosRetorno) {
 
 		List<ClientesExternos> listaClientesExternos = new ArrayList<ClientesExternos>();
 
@@ -59,7 +59,16 @@ public class HiveService {
 		});
 
 		// Inclui todos os clientes da lista.
-		ClientesExternos.incluir(listaClientesExternos);
+		incluirListaClientesExternosShopee(listaClientesExternos);
+	}
+	
+	public List<ClientesExternos> listarClientesExternosShopee() {
+		return ClientesExternos.listAll();
+	}
+	
+	@Transactional 
+	public void incluirListaClientesExternosShopee(List<ClientesExternos> listaClientesExternos) {
+		Uni.combine().all().unis(ClientesExternos.incluir(listaClientesExternos)).discardItems().await().indefinitely();
 	}
 
 	private Integer recuperarTipoDocumento(String numeroDocumento) {

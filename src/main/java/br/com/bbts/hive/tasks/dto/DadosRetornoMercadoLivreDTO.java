@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author Ricardo da Silva Flores (BBTS)
  */
-public class DadosRetornoShopeeDTO implements Serializable {
+public class DadosRetornoMercadoLivreDTO implements Serializable {
 
 	@Serial
 	private static final long serialVersionUID = 1L;
@@ -18,7 +18,7 @@ public class DadosRetornoShopeeDTO implements Serializable {
 
 	private BigDecimal proximoNumeroSolicitacao;
 
-	private List<DadosClienteShopeeDTO> listaClientesShopee;
+	private List<DadosClienteMercadoLivreDTO> listaClientesMercadoLivre;
 
 	public String getIndicadorDeContinuidade() {
 		return indicadorDeContinuidade;
@@ -36,15 +36,15 @@ public class DadosRetornoShopeeDTO implements Serializable {
 		this.proximoNumeroSolicitacao = proximoNumeroSolicitacao;
 	}
 
-	public List<DadosClienteShopeeDTO> getListaClientesShopee() {
-		if (listaClientesShopee == null) {
-			listaClientesShopee = new ArrayList<DadosClienteShopeeDTO>();
+	public List<DadosClienteMercadoLivreDTO> getListaClientesMercadoLivre() {
+		if (listaClientesMercadoLivre == null) {
+			listaClientesMercadoLivre = new ArrayList<DadosClienteMercadoLivreDTO>();
 		}
-		return listaClientesShopee;
+		return listaClientesMercadoLivre;
 	}
 
-	public void setListaClientesShopee(List<DadosClienteShopeeDTO> listaClientesShopee) {
-		this.listaClientesShopee = listaClientesShopee;
+	public void setListaClientesMercadoLivre(List<DadosClienteMercadoLivreDTO> listaClientesMercadoLivre) {
+		this.listaClientesMercadoLivre = listaClientesMercadoLivre;
 	}
 
 }

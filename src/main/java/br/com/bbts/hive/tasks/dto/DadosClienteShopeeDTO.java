@@ -2,7 +2,6 @@ package br.com.bbts.hive.tasks.dto;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * @author Ricardo da Silva Flores (BBTS)
@@ -12,93 +11,86 @@ public class DadosClienteShopeeDTO implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 1L;
 
-	private String nome;
+	private String name;
+	private String lastName;
+	private Integer socialSecurityNumber;
+	private String passportNumber;
+	private String birthDate;
+	private Integer genderType;
+	private String motherFullName;
+	private String fatherFullName;
+	private Integer age;
 
-	private BigDecimal numeroSolicitacao;
-
-	private Integer codigoTipoDocumento;
-
-	private String numeroDocumento;
-
-	private String timestampAtualizacao;
-
-	private String dataNascimento;
-
-	private String nomePai;
-
-	private String nomeMae;
-
-	private String sexo;
-
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public BigDecimal getNumeroSolicitacao() {
-		return numeroSolicitacao;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setNumeroSolicitacao(BigDecimal numeroSolicitacao) {
-		this.numeroSolicitacao = numeroSolicitacao;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public Integer getCodigoTipoDocumento() {
-		return codigoTipoDocumento;
+	public Integer getSocialSecurityNumber() {
+		return socialSecurityNumber;
 	}
 
-	public void setCodigoTipoDocumento(Integer codigoTipoDocumento) {
-		this.codigoTipoDocumento = codigoTipoDocumento;
+	public void setSocialSecurityNumber(Integer socialSecurityNumber) {
+		this.socialSecurityNumber = socialSecurityNumber;
 	}
 
-	public String getNumeroDocumento() {
-		return numeroDocumento;
+	public String getPassportNumber() {
+		return passportNumber;
 	}
 
-	public void setNumeroDocumento(String numeroDocumento) {
-		this.numeroDocumento = numeroDocumento;
+	public void setPassportNumber(String passportNumber) {
+		this.passportNumber = passportNumber;
 	}
 
-	public String getTimestampAtualizacao() {
-		return timestampAtualizacao;
+	public String getBirthDate() {
+		return birthDate;
 	}
 
-	public void setTimestampAtualizacao(String timestampAtualizacao) {
-		this.timestampAtualizacao = timestampAtualizacao;
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
 	}
 
-	public String getDataNascimento() {
-		return dataNascimento;
+	public Integer getGenderType() {
+		return genderType;
 	}
 
-	public void setDataNascimento(String dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	public void setGenderType(Integer genderType) {
+		this.genderType = genderType;
 	}
 
-	public String getNomePai() {
-		return nomePai;
+	public String getMotherFullName() {
+		return motherFullName;
 	}
 
-	public void setNomePai(String nomePai) {
-		this.nomePai = nomePai;
+	public void setMotherFullName(String motherFullName) {
+		this.motherFullName = motherFullName;
 	}
 
-	public String getNomeMae() {
-		return nomeMae;
+	public String getFatherFullName() {
+		return fatherFullName;
 	}
 
-	public void setNomeMae(String nomeMae) {
-		this.nomeMae = nomeMae;
+	public void setFatherFullName(String fatherFullName) {
+		this.fatherFullName = fatherFullName;
 	}
 
-	public String getSexo() {
-		return sexo;
+	public Integer getAge() {
+		return age;
 	}
 
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
+	public void setAge(Integer age) {
+		this.age = age;
 	}
+
 }

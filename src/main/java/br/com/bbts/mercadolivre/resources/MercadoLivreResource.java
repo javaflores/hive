@@ -1,4 +1,4 @@
-package br.com.bbts.shopee.resources;
+package br.com.bbts.mercadolivre.resources;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -7,11 +7,11 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.jboss.logging.Logger;
 
-import br.com.bbts.shopee.dto.ClienteShopeeDTO;
-import br.com.bbts.shopee.dto.DadosRequisicaoDTO;
-import br.com.bbts.shopee.dto.DadosRetornoDTO;
-import br.com.bbts.shopee.entidades.ClienteShopee;
-import br.com.bbts.shopee.services.DadosClientesService;
+import br.com.bbts.mercadolivre.dto.ClienteMercadoLivreDTO;
+import br.com.bbts.mercadolivre.dto.DadosRequisicaoDTO;
+import br.com.bbts.mercadolivre.dto.DadosRetornoDTO;
+import br.com.bbts.mercadolivre.entidades.ClienteMercadoLivre;
+import br.com.bbts.mercadolivre.services.DadosClientesService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -27,10 +27,10 @@ import jakarta.ws.rs.core.Response.Status;
 /**
  * @author Ricardo da Silva Flores (BBTS)
  */
-@Path("/shopee/dados/clientes")
+@Path("/mercadolivre/dados/clientes")
 @Produces(MediaType.APPLICATION_JSON)
 @Tag(name = "SERVICOS EXTERNOS")
-public class ListarDadosClientesResource {
+public class MercadoLivreResource {
 
 	private static final int QTD_MAX_LISTA = 5;
 
@@ -44,11 +44,11 @@ public class ListarDadosClientesResource {
 	@Path("/gerar")
 	@Transactional(rollbackOn = Exception.class)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Operation(summary = "[SHOPEE] - Cadastra os dados do cliente informando o nome e documento.", description = "Cadastra os dados do cliente a ser cadastrado na shopee.")
+	@Operation(summary = "[MERCADO LIVRE] - Cadastra os dados do cliente informando o nome e documento.", description = "Cadastra os dados do cliente a ser cadastrado no Mercado Livre.")
 	public Response gerarDadosUsuario(DadosRequisicaoDTO dadosClienteDTO) throws Exception {
 
 		// Salva uma publicacao completa.
-		dadosClientesService.salvarDadosClienteShopee(dadosClienteDTO);
+		dadosClientesService.salvarDadosClienteMercadoLivre(dadosClienteDTO);
 
 		// Retorna os dados do usuario com seu ID.
 		return Response.status(Status.OK).entity("OK").build();
@@ -56,11 +56,11 @@ public class ListarDadosClientesResource {
 
 	@GET
 	@Path("/buscar/{numeroSolicitacaoSequencial}")
-	@Operation(summary = "[SHOPEE] - Busca os dados dos clientes a partir do número de solicitação", description = "Busca com os dados dos clientes cadastrados na shopee pelo numero de solicitação informado.")
+	@Operation(summary = "[MERCADO LIVRE] - Busca os dados dos clientes a partir do número de solicitação", description = "Busca com os dados dos clientes cadastrados no Mercado Livre pelo numero de solicitação informado.")
 	public Response listarDadosClientes(
 			@PathParam("numeroSolicitacaoSequencial") BigDecimal numeroSolicitacaoSequencial) throws Exception {
 
-		logger.info("Início da listagem dos dados dos clientes da shopee.");
+		logger.info("Início da listagem dos dados dos clientes do Mercado Livre.");
 
 		// Montando o objeto de retorno.
 		DadosRetornoDTO retorno = new DadosRetornoDTO();
@@ -69,7 +69,7 @@ public class ListarDadosClientesResource {
 
 		// Busca os dados dos clientes com base no ultimo
 		// numero de solicitacao informado.
-		var listaDadosFiltrados = dadosClientesService.filtrarDadosClienteShopee(numeroSolicitacaoSequencial);
+		var listaDadosFiltrados = dadosClientesService.filtrarDadosClienteMercadoLivre(numeroSolicitacaoSequencial);
 
 		// Verifica pela quantidade da lista se tem rechamada.
 		boolean temRechamada = verificarSeTemRechamada(listaDadosFiltrados);
@@ -89,7 +89,7 @@ public class ListarDadosClientesResource {
 
 		// Preenchendo a resposta.
 		listaDadosFiltrados.forEach(dadoUsuario -> {
-			var cliente = new ClienteShopeeDTO();
+			var cliente = new ClienteMercadoLivreDTO();
 			cliente.setNumeroSolicitacao(dadoUsuario.getNumeroSolicitacao());
 			cliente.setCodigoTipoDocumento(dadoUsuario.getCodigoTipoDocumento());
 			cliente.setNumeroDocumento(dadoUsuario.getNumeroDocumento());
@@ -99,15 +99,15 @@ public class ListarDadosClientesResource {
 			cliente.setNomePai(dadoUsuario.getNomePai());
 			cliente.setSexo(dadoUsuario.getSexo());
 			cliente.setDataNascimento(dadoUsuario.getDataNascimento());
-			retorno.getListaClientesShopee().add(cliente);
+			retorno.getListaClientesMercadoLivre().add(cliente);
 		});
 
-		logger.info("Lista de dados retornadas: " + retorno.getListaClientesShopee().size());
+		logger.info("Lista de dados retornadas: " + retorno.getListaClientesMercadoLivre().size());
 
 		return Response.status(Status.OK).entity(retorno).build();
 	}
 
-	private boolean verificarSeTemRechamada(List<ClienteShopee> listaDadosFiltrados) {
+	private boolean verificarSeTemRechamada(List<ClienteMercadoLivre> listaDadosFiltrados) {
 
 		// Se a quantidade que veio do banco de dados é maior que 5, então
 		// tem proximos para serem chamados.

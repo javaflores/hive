@@ -1,4 +1,4 @@
-package br.com.bbts.shopee.entidades;
+package br.com.bbts.mercadolivre.entidades;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,31 +15,31 @@ import jakarta.persistence.Id;
 import jakarta.persistence.NamedNativeQuery;
 import jakarta.persistence.Table;
 
-@NamedNativeQuery(name = ClienteShopee.INCLUIR_DADOS_USUARIOS, 
-		query = "INSERT INTO ClienteShopee (" +
+@NamedNativeQuery(name = ClienteMercadoLivre.INCLUIR_DADOS_USUARIOS, 
+		query = "INSERT INTO ClienteMercadoLivre (" +
 			"numeroSolicitacao, nome, codigoTipoDocumento, numeroDocumento, timestampAtualizacao," +
 			"dataNascimento, nomePai, nomeMae, sexo) " +	
 			"VALUES (:numeroSolicitacao, :nome, :codigoTipoDocumento, :numeroDocumento, :timestampAtualizacao, " + 
 			":dataNascimento, :nomePai, :nomeMae, :sexo)"
 )
 
-@NamedNativeQuery(name = ClienteShopee.FILTRAR_DADOS_USUARIOS, 
+@NamedNativeQuery(name = ClienteMercadoLivre.FILTRAR_DADOS_USUARIOS, 
 		query = "SELECT id, numeroSolicitacao, nome, codigoTipoDocumento, numeroDocumento, timestampAtualizacao, " +
 			"dataNascimento, nomePai, nomeMae, sexo " +
-			"FROM ClienteShopee " +
+			"FROM ClienteMercadoLivre " +
 			"WHERE numeroSolicitacao > :numeroSolicitacao " +
 			"ORDER BY numeroSolicitacao ASC " + 
 			"FETCH FIRST 6 ROWS ONLY", 
-		resultClass = ClienteShopee.class
+		resultClass = ClienteMercadoLivre.class
 )
 
 @Entity
-@Table(name = "ClienteShopee")
+@Table(name = "ClienteMercadoLivre")
 @Immutable
-public class ClienteShopee extends PanacheEntityBase {
+public class ClienteMercadoLivre extends PanacheEntityBase {
 
-	public static final String INCLUIR_DADOS_USUARIOS = "ClienteShopee.INCLUIR_DADOS_USUARIOS";
-	public static final String FILTRAR_DADOS_USUARIOS = "ClienteShopee.FILTRAR_DADOS_USUARIOS";
+	public static final String INCLUIR_DADOS_USUARIOS = "ClienteMercadoLivre.INCLUIR_DADOS_USUARIOS";
+	public static final String FILTRAR_DADOS_USUARIOS = "ClienteMercadoLivre.FILTRAR_DADOS_USUARIOS";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

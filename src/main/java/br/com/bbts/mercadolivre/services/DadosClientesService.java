@@ -1,4 +1,4 @@
-package br.com.bbts.shopee.services;
+package br.com.bbts.mercadolivre.services;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -7,9 +7,9 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import br.com.bbts.shopee.dao.ClienteDao;
-import br.com.bbts.shopee.dto.DadosRequisicaoDTO;
-import br.com.bbts.shopee.entidades.ClienteShopee;
+import br.com.bbts.mercadolivre.dao.ClienteDao;
+import br.com.bbts.mercadolivre.dto.DadosRequisicaoDTO;
+import br.com.bbts.mercadolivre.entidades.ClienteMercadoLivre;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import net.datafaker.Faker;
@@ -29,27 +29,27 @@ public class DadosClientesService {
 	@Inject
 	ClienteDao clienteDao;
 
-	public void salvarDadosClienteShopee(DadosRequisicaoDTO dadosDTO) throws Exception {
+	public void salvarDadosClienteMercadoLivre(DadosRequisicaoDTO dadosDTO) throws Exception {
 
 		// Preenche o objeto para persistencia.
-		ClienteShopee clienteShopee = new ClienteShopee();
-		clienteShopee.setNome(dadosDTO.getNome());
-		clienteShopee.setNumeroDocumento(dadosDTO.getNumeroDocumento());
-		clienteShopee.setCodigoTipoDocumento(recuperarTipoDocumento(dadosDTO.getNumeroDocumento()));
-		clienteShopee.setTimestampAtualizacao(LocalDateTime.now());
+		ClienteMercadoLivre clienteMercadoLivre = new ClienteMercadoLivre();
+		clienteMercadoLivre.setNome(dadosDTO.getNome());
+		clienteMercadoLivre.setNumeroDocumento(dadosDTO.getNumeroDocumento());
+		clienteMercadoLivre.setCodigoTipoDocumento(recuperarTipoDocumento(dadosDTO.getNumeroDocumento()));
+		clienteMercadoLivre.setTimestampAtualizacao(LocalDateTime.now());
 		
 		// Gera o numero de solicitação a ser utilizado na busca dos dados.
-		clienteShopee.setNumeroSolicitacao(gerarNumeroSolicitacao());
+		clienteMercadoLivre.setNumeroSolicitacao(gerarNumeroSolicitacao());
 
 		// Dados fake.
 		Faker faker = new Faker();
-		clienteShopee.setDataNascimento(faker.date().birthdayLocalDate());
-		clienteShopee.setNomeMae(faker.name().femaleFirstName() + " " + faker.name().lastName());
-		clienteShopee.setNomePai(faker.name().fullName());
-		clienteShopee.setSexo(faker.gender().shortBinaryTypes().toUpperCase());
+		clienteMercadoLivre.setDataNascimento(faker.date().birthdayLocalDate());
+		clienteMercadoLivre.setNomeMae(faker.name().femaleFirstName() + " " + faker.name().lastName());
+		clienteMercadoLivre.setNomePai(faker.name().fullName());
+		clienteMercadoLivre.setSexo(faker.gender().shortBinaryTypes().toUpperCase());
 
 		// Salva os dados do cliente.
-		clienteDao.incluirDadosClienteShopee(clienteShopee);
+		clienteDao.incluirDadosClienteMercadoLivre(clienteMercadoLivre);
 	}
 
 	// Feito assim somente para testes do tipo de documento.
@@ -65,8 +65,8 @@ public class DadosClientesService {
 		}
 	}
 
-	public List<ClienteShopee> filtrarDadosClienteShopee(BigDecimal numeroSolicitacaoSequencial) throws Exception {
-		return clienteDao.filtrarDadosClienteShopee(numeroSolicitacaoSequencial);
+	public List<ClienteMercadoLivre> filtrarDadosClienteMercadoLivre(BigDecimal numeroSolicitacaoSequencial) throws Exception {
+		return clienteDao.filtrarDadosClienteMercadoLivre(numeroSolicitacaoSequencial);
 	}
 	
 	public BigDecimal gerarNumeroSolicitacao() {

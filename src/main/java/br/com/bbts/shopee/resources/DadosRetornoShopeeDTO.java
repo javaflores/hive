@@ -1,4 +1,4 @@
-package br.com.bbts.mercadolivre.resources;
+package br.com.bbts.shopee.resources;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -7,13 +7,13 @@ import java.util.List;
 /**
  * @author Ricardo da Silva Flores (BBTS)
  */
-public class DadosRetornoMercadoLivreDTO {
+public class DadosRetornoShopeeDTO {
 
 	private String indicadorDeContinuidade;
 
 	private BigDecimal proximoNumeroSolicitacao;
 
-	private List<ClienteMercadoLivreDTO> listaClientesMercadoLivre = new ArrayList<ClienteMercadoLivreDTO>();
+	private List<ClienteShopeeDTO> listaClientesShopee = new ArrayList<ClienteShopeeDTO>();
 
 	public String getIndicadorDeContinuidade() {
 		return indicadorDeContinuidade;
@@ -31,12 +31,12 @@ public class DadosRetornoMercadoLivreDTO {
 		this.proximoNumeroSolicitacao = proximoNumeroSolicitacao;
 	}
 
-	public List<ClienteMercadoLivreDTO> getListaClientesMercadoLivre() {
-		return listaClientesMercadoLivre;
+	public List<ClienteShopeeDTO> getListaClientesShopee() {
+		return listaClientesShopee;
 	}
 
-	public void setListaClientesMercadoLivre(List<ClienteMercadoLivreDTO> listaClientesMercadoLivre) {
-		this.listaClientesMercadoLivre = listaClientesMercadoLivre;
+	public void setListaClientesShopee(List<ClienteShopeeDTO> listaClientesShopee) {
+		this.listaClientesShopee = listaClientesShopee;
 	}
 
 }

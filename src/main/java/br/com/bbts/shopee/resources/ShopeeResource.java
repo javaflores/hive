@@ -1,4 +1,4 @@
-package br.com.bbts.mercadolivre.resources;
+package br.com.bbts.shopee.resources;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -9,8 +9,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.jboss.logging.Logger;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
@@ -24,41 +22,42 @@ import net.datafaker.Faker;
 /**
  * @author Ricardo da Silva Flores (BBTS)
  */
-@Path("/mercadolivre/buscar")
+@Path("/shopee/buscar")
 @Produces(MediaType.APPLICATION_JSON)
 @Tag(name = "SERVICOS EXTERNOS")
-public class ListarDadosClientesResource {
+public class ShopeeResource {
 
 	@Inject
 	Logger logger;
 
 	@GET
 	@Path("/novos/cadastros")
-	@Operation(summary = "[MERCADO LIVRE] - Busca os dados dos novos cadatros [Dados Mockado]", description = "Busca com os dados dos clientes cadastrados no mercado livre.")
+	@Operation(summary = "[SHOPEE] - Busca os dados dos novos cadatros [Dados Mockado]", description = "Busca com os dados dos clientes cadastrados na Shopee.")
 	public Response buscarNovosClientes() throws Exception {
 
-		logger.info("Início da listagem dos dados dos clientes do mercado livre.");
+		logger.info("Início da listagem dos dados dos clientes da Shopee.");
 
 		// Montando o objeto de retorno.
-		List<ClienteMercadoLivreDTO> listaRetorno = new ArrayList<ClienteMercadoLivreDTO>();
+		List<ClienteShopeeDTO> listaRetorno = new ArrayList<ClienteShopeeDTO>();
 
 		// Preenchendo a lista mockada.
-		preencherRetornoDadosMercadoLivre(listaRetorno);
+		preencherRetornoDadosShopee(listaRetorno);
 
 		// Criando json para exibir no log para visualização dos dados.
-		ObjectMapper mapper = new ObjectMapper();
-		String objetoJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(listaRetorno);
-
-		logger.info("Lista de dados retornadas do Mercado Livre: \n" + objetoJson);
+		// ObjectMapper mapper = new ObjectMapper();
+		// String objetoJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(listaRetorno);
+		// logger.info("Lista de dados retornadas da Shopee: \n" + objetoJson);
+		
+		logger.info("Quantidade de itens retornados da Shopee: " + listaRetorno.size());
 
 		return Response.status(Status.OK).entity(listaRetorno).build();
 	}
 
-	private void preencherRetornoDadosMercadoLivre(List<ClienteMercadoLivreDTO> listaRetorno) {
+	private void preencherRetornoDadosShopee(List<ClienteShopeeDTO> listaRetorno) {
 
 		// Criando uma resposta com 3 itens.
 		for (int i = 0; i < 3; i++) {
-			var cliente = new ClienteMercadoLivreDTO();
+			var cliente = new ClienteShopeeDTO();
 			cliente.setGenderType(ThreadLocalRandom.current().nextInt(1, 3));
 			cliente.setPassportNumber("US" + String.valueOf(ThreadLocalRandom.current().nextInt(10000, 100000)));
 			cliente.setSocialSecurityNumber(ThreadLocalRandom.current().nextInt(10000, 1000000));

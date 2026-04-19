@@ -5,7 +5,7 @@
 -- insert into myentity (id, field) values(3, 'field-3');
 -- alter sequence myentity_seq restart with 4;
 
-create table ClienteShopee (
+create table ClienteMercadoLivre (
 	id int AUTO_INCREMENT PRIMARY KEY,
 	numeroSolicitacao decimal(17, 0) NOT NULL,
     nome varchar(255) NOT NULL,

@@ -1,4 +1,4 @@
-package br.com.bbts.shopee.dto;
+package br.com.bbts.mercadolivre.dto;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -18,7 +18,7 @@ public class DadosRetornoDTO implements Serializable {
 
 	private BigDecimal proximoNumeroSolicitacao;
 
-	private List<ClienteShopeeDTO> listaClientesShopee = new ArrayList<ClienteShopeeDTO>();
+	private List<ClienteMercadoLivreDTO> listaClientesMercadoLivre = new ArrayList<ClienteMercadoLivreDTO>();
 
 	public String getIndicadorDeContinuidade() {
 		return indicadorDeContinuidade;
@@ -36,12 +36,12 @@ public class DadosRetornoDTO implements Serializable {
 		this.proximoNumeroSolicitacao = proximoNumeroSolicitacao;
 	}
 
-	public List<ClienteShopeeDTO> getListaClientesShopee() {
-		return listaClientesShopee;
+	public List<ClienteMercadoLivreDTO> getListaClientesMercadoLivre() {
+		return listaClientesMercadoLivre;
 	}
 
-	public void setListaClientesShopee(List<ClienteShopeeDTO> listaClientesShopee) {
-		this.listaClientesShopee = listaClientesShopee;
+	public void setListaClientesMercadoLivre(List<ClienteMercadoLivreDTO> listaClientesMercadoLivre) {
+		this.listaClientesMercadoLivre = listaClientesMercadoLivre;
 	}
 
 }

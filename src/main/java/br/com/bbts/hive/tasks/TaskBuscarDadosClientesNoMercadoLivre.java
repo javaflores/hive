@@ -40,15 +40,13 @@ public class TaskBuscarDadosClientesNoMercadoLivre {
 
 		logger.info("Task para buscar os dados dos clientes no mercado livre.");
 
-		// Executando a API do Mercado Livre para retornar os dados dos clientes.
-		var listaDadosRetorno = executarTaskRestClient.executarTaskMercadoLivre();
+		// Executando a API da do Mercado Livre para retornar os dados dos clientes.
+		var dadosRetorno = executarTaskRestClient.executarTaskMercadoLivre("1");
 
 		// Criando json para exibir no log para visualização dos dados.
 		ObjectMapper mapper = new ObjectMapper();
-		String objetoJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(listaDadosRetorno);
-		
-		hiveService.salvarDadosClientesExternosDoMercadoLivre(listaDadosRetorno);
+		String objetoJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(dadosRetorno);
 
-		logger.info("Lista de dados retornados do Mercado Livre: \n" + objetoJson);
+		logger.info("Lista de dados retornados do mercado livre: \n" + objetoJson);
 	}
 }

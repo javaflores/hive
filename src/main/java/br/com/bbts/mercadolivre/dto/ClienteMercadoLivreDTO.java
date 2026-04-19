@@ -1,4 +1,4 @@
-package br.com.bbts.shopee.dto;
+package br.com.bbts.mercadolivre.dto;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 /**
  * @author Ricardo da Silva Flores (BBTS)
  */
-public class ClienteShopeeDTO implements Serializable {
+public class ClienteMercadoLivreDTO implements Serializable {
 
 	@Serial
 	private static final long serialVersionUID = 1L;
