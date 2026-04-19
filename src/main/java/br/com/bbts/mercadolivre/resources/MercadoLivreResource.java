@@ -8,10 +8,11 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.jboss.logging.Logger;
 
 import br.com.bbts.mercadolivre.dto.ClienteMercadoLivreDTO;
-import br.com.bbts.mercadolivre.dto.DadosRequisicaoDTO;
 import br.com.bbts.mercadolivre.dto.DadosRetornoDTO;
 import br.com.bbts.mercadolivre.entidades.ClienteMercadoLivre;
 import br.com.bbts.mercadolivre.services.DadosClientesService;
+import io.quarkus.runtime.StartupEvent;
+import jakarta.enterprise.event.Observes;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
@@ -39,16 +40,25 @@ public class MercadoLivreResource {
 
 	@Inject
 	DadosClientesService dadosClientesService;
+	
+    void onStart(@Observes StartupEvent ev) throws Exception {               
+        System.out.println("Iniciando a criação de dados mocados...");
+        gerarDadosUsuario();
+    }
 
 	@POST
 	@Path("/gerar")
 	@Transactional(rollbackOn = Exception.class)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Operation(summary = "[MERCADO LIVRE] - Cadastra os dados do cliente informando o nome e documento.", description = "Cadastra os dados do cliente a ser cadastrado no Mercado Livre.")
-	public Response gerarDadosUsuario(DadosRequisicaoDTO dadosClienteDTO) throws Exception {
+	@Operation(summary = "[MERCADO LIVRE] - Gera 20 dados do cliente aleatórios.", description = "Cadastra os dados dos clientes de forma aleatória no Mercado Livre.")
+	public Response gerarDadosUsuario() throws Exception {
 
-		// Salva uma publicacao completa.
-		dadosClientesService.salvarDadosClienteMercadoLivre(dadosClienteDTO);
+		// Percorre e cadastra os dados de forma aleatória para testes.
+		for (int i = 0; i < 20; i++) {
+			
+			// Salva uma publicacao completa.
+			dadosClientesService.salvarDadosClienteMercadoLivre();
+		}
 
 		// Retorna os dados do usuario com seu ID.
 		return Response.status(Status.OK).entity("OK").build();
@@ -61,6 +71,8 @@ public class MercadoLivreResource {
 			@PathParam("numeroSolicitacaoSequencial") BigDecimal numeroSolicitacaoSequencial) throws Exception {
 
 		logger.info("Início da listagem dos dados dos clientes do Mercado Livre.");
+		
+		logger.info("Buscando os próximos dados com o numero de solicitação: " + numeroSolicitacaoSequencial);
 
 		// Montando o objeto de retorno.
 		DadosRetornoDTO retorno = new DadosRetornoDTO();

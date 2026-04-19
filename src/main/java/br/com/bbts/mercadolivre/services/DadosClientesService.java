@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.apache.commons.lang.StringUtils;
 
 import br.com.bbts.mercadolivre.dao.ClienteDao;
-import br.com.bbts.mercadolivre.dto.DadosRequisicaoDTO;
 import br.com.bbts.mercadolivre.entidades.ClienteMercadoLivre;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -29,13 +29,10 @@ public class DadosClientesService {
 	@Inject
 	ClienteDao clienteDao;
 
-	public void salvarDadosClienteMercadoLivre(DadosRequisicaoDTO dadosDTO) throws Exception {
+	public void salvarDadosClienteMercadoLivre() throws Exception {
 
 		// Preenche o objeto para persistencia.
 		ClienteMercadoLivre clienteMercadoLivre = new ClienteMercadoLivre();
-		clienteMercadoLivre.setNome(dadosDTO.getNome());
-		clienteMercadoLivre.setNumeroDocumento(dadosDTO.getNumeroDocumento());
-		clienteMercadoLivre.setCodigoTipoDocumento(recuperarTipoDocumento(dadosDTO.getNumeroDocumento()));
 		clienteMercadoLivre.setTimestampAtualizacao(LocalDateTime.now());
 		
 		// Gera o numero de solicitação a ser utilizado na busca dos dados.
@@ -43,10 +40,14 @@ public class DadosClientesService {
 
 		// Dados fake.
 		Faker faker = new Faker();
+		clienteMercadoLivre.setNome(faker.name().fullName());
 		clienteMercadoLivre.setDataNascimento(faker.date().birthdayLocalDate());
 		clienteMercadoLivre.setNomeMae(faker.name().femaleFirstName() + " " + faker.name().lastName());
 		clienteMercadoLivre.setNomePai(faker.name().fullName());
 		clienteMercadoLivre.setSexo(faker.gender().shortBinaryTypes().toUpperCase());
+		
+		clienteMercadoLivre.setNumeroDocumento(String.valueOf(ThreadLocalRandom.current().nextInt(100000000, 800000000)));
+		clienteMercadoLivre.setCodigoTipoDocumento(recuperarTipoDocumento(clienteMercadoLivre.getNumeroDocumento()));
 
 		// Salva os dados do cliente.
 		clienteDao.incluirDadosClienteMercadoLivre(clienteMercadoLivre);

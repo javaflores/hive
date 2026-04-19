@@ -14,7 +14,7 @@ create table ClienteMercadoLivre (
     dataNascimento date,
     nomePai varchar(255),
     nomeMae varchar(255),
-    sexo char(1) NOT NULL,
+    sexo varchar(1) NOT NULL,
     timestampAtualizacao timestamp(6),
     primary key (id)
 );
@@ -30,7 +30,7 @@ create table CLIENTES_EXTERNOS (
     DT_NASCIMENTO date,
     NM_PAI varchar(255),
     NM_MAE varchar(255),
-    TP_SEXO char(1) NOT NULL,
+    TP_SEXO varchar(1) NOT NULL,
     TS_ULT_ATUALIZACAO timestamp(6),
     primary key (ID)
 );

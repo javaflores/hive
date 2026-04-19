@@ -36,7 +36,7 @@ public class TaskBuscarDadosClientesNaShopee {
 	@GET
 	@Path("/buscar/dados/clientes")
 	@Operation(summary = "Busca os dados dos clientes na Shopee", description = "Busca com os dados dos clientes cadastrados na Shopee.")
-//	@Scheduled(every = "10s", concurrentExecution = Scheduled.ConcurrentExecution.SKIP)
+	@Scheduled(every = "10s", concurrentExecution = Scheduled.ConcurrentExecution.SKIP)
 	public void executeTask() throws Exception {
 
 		logger.info("Iniciando Task para buscar os dados dos clientes da Shopee.");
@@ -45,9 +45,9 @@ public class TaskBuscarDadosClientesNaShopee {
 		var listaDadosRetorno = executarTaskRestClient.executarTaskShopee();
 		
 		// Criando json para exibir no log para visualização dos dados.
-		ObjectMapper mapper = new ObjectMapper();
-		String objetoJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(listaDadosRetorno);
-		logger.info("Lista de dados retornados da Shopee: \n" + objetoJson);
+		// ObjectMapper mapper = new ObjectMapper();
+		// String objetoJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(listaDadosRetorno);
+		// logger.info("Lista de dados retornados da Shopee: \n" + objetoJson);
 		
 		// Salva os dados retornados na shopee para dentro do hive.
 		hiveService.salvarDadosClientesExternosDaShopee(listaDadosRetorno);

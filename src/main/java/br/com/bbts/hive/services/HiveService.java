@@ -3,7 +3,9 @@ package br.com.bbts.hive.services;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -23,6 +25,26 @@ import jakarta.transaction.Transactional;
 @ApplicationScoped
 public class HiveService {
 
+	public BigDecimal recuperarUltimaSolicitacaoDadosClienteMercadoLivre() throws Exception {
+
+        // Monta os parametros do filtro.
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("codigoEmpresaExterno", TipoEmpresaEnum.MERCADO_LIVRE.getCodigo());
+
+        // Monta a query dos atributos a serem atualizados.
+        String query = "SELECT MAX(numeroSequencialExterno) FROM ClientesExternos " +
+                "where codigoEmpresaExterno = :codigoEmpresaExterno ";
+
+        // Executa o select para buscar o ultimo numero de solicitacao para utilizar na rechamada.
+        BigDecimal ultimoNumeroSequencial = ClientesExternos.find(query, parametros).project(BigDecimal.class).firstResult();
+        
+        if (ultimoNumeroSequencial == null) {
+        	return new BigDecimal(1);
+        }
+
+		return ultimoNumeroSequencial;
+	}
+	
 	public List<ClientesExternos> listarDadosClientesNoHive() throws Exception {
 
 		List<ClientesExternos> listaDadosClientes = ClientesExternos.listAll();
