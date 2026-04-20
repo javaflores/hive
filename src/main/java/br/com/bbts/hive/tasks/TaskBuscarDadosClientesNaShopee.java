@@ -5,8 +5,6 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import br.com.bbts.hive.services.HiveService;
 import io.quarkus.scheduler.Scheduled;
 import jakarta.inject.Inject;
@@ -35,7 +33,7 @@ public class TaskBuscarDadosClientesNaShopee {
 
 	@GET
 	@Path("/buscar/dados/clientes")
-	@Operation(summary = "Busca os dados dos clientes na Shopee", description = "Busca com os dados dos clientes cadastrados na Shopee.")
+	@Operation(summary = "Busca os dados dos clientes na Shopee de forma automatica a cada 30 segundos.", description = "Busca com os dados dos clientes cadastrados na Shopee.")
 	@Scheduled(every = "30s", concurrentExecution = Scheduled.ConcurrentExecution.SKIP)
 	public void executeTask() throws Exception {
 

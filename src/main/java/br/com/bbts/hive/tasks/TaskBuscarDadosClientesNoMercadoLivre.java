@@ -36,7 +36,7 @@ public class TaskBuscarDadosClientesNoMercadoLivre {
 
 	@GET
 	@Path("/buscar/dados/clientes")
-	@Operation(summary = "Busca os dados dos clientes no mercado livre", description = "Busca com os dados dos clientes cadastrados no mercado livre.")
+	@Operation(summary = "Busca os dados dos clientes no mercado livre de forma automatica a cada 10 segundos.", description = "Busca com os dados dos clientes cadastrados no mercado livre.")
 	@Scheduled(every = "10s", concurrentExecution = Scheduled.ConcurrentExecution.SKIP)
 	public void executeTask() throws Exception {
 

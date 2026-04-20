@@ -1,13 +1,9 @@
 package br.com.bbts.hive.resources;
 
-import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.jboss.logging.Logger;
 
-import br.com.bbts.hive.entidades.ClientesExternos;
 import br.com.bbts.hive.services.HiveService;
 import br.com.bbts.hive.utils.HiveUtils;
 import jakarta.inject.Inject;
@@ -34,19 +30,19 @@ public class HiveResource {
 
 	@GET
 	@Path("/listar/dados/cliente")
-	@Operation(summary = "Lista os dados dos clientes do Mercado Livre e Shopee", description = "Lista todos os dados dos clientes buscados nos serviços externos do Mercado Livre e Shopee")
+	@Operation(summary = "Lista os dados dos clientes do Mercado Livre e Shopee gravados no hive", description = "Lista todos os dados dos clientes buscados nos serviços externos do Mercado Livre e Shopee")
 	public Response listarDadosClientes() throws Exception {
 
 		logger.info("Início da listagem dos dados dos clientes da shopee.");
 
 		// Buscando os dados do hive.
 		var listaDadosClientes = hiveService.listarDadosClientesNoHive();
-		
+
 		// Printa os dados contigos no hive.
 		HiveUtils.printarDadosClientesComoTabela(listaDadosClientes);
 
 		logger.info("Lista de dados retornadas: \n" + listaDadosClientes);
-		
+
 		return Response.status(Status.OK).entity(listaDadosClientes).build();
 	}
 

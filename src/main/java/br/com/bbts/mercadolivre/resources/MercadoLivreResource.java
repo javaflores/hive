@@ -41,8 +41,11 @@ public class MercadoLivreResource {
 	@Inject
 	DadosClientesService dadosClientesService;
 	
+	// Implementação para iniciar e executar a geração dos dados.
     void onStart(@Observes StartupEvent ev) throws Exception {               
         System.out.println("Iniciando a criação de dados mocados...");
+        
+        // Executa o método para gerar 20 dados aleatórios.
         gerarDadosUsuario();
     }
 
@@ -50,7 +53,7 @@ public class MercadoLivreResource {
 	@Path("/gerar")
 	@Transactional(rollbackOn = Exception.class)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Operation(summary = "[MERCADO LIVRE] - Gera 20 dados do cliente aleatórios.", description = "Cadastra os dados dos clientes de forma aleatória no Mercado Livre.")
+	@Operation(summary = "[MERCADO LIVRE] - Gera 20 dados de cliente aleatórios.", description = "Cadastra os dados dos clientes de forma aleatória no Mercado Livre.")
 	public Response gerarDadosUsuario() throws Exception {
 
 		// Percorre e cadastra os dados de forma aleatória para testes.
@@ -128,7 +131,5 @@ public class MercadoLivreResource {
 		}
 
 		return false;
-
 	}
-
 }
