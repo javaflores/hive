@@ -70,3 +70,11 @@ Após a consulta dos dados nos serviços externos, estes são disponibilizados e
 | **GET** | `/hive/listar/dados/cliente` | Lista os dados dos clientes do Mercado Livre e Shopee gravados no hive padronizados |
 | **GET** | `/hive/listar/dados/cliente/mercadolivre` | Lista os dados dos clientes do Mercado Livre gravados no hive padronizados |
 | **GET** | `/hive/listar/dados/cliente/shopee` | Lista os dados dos clientes da Shopee gravados no hive padronizados |
+
+---
+
+# Vídeo Explicativo
+
+Vídeo explicativo sobre o projeto.
+
+* [Vídeo Explicativo](https://github.com/javaflores/hive/blob/main/src/main/resources/explicacao-api.mp4)
