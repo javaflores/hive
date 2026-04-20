@@ -63,7 +63,8 @@ public class HiveUtils {
 	}
 	
 	public static void printarDadosClientesComoTabela(List<ClientesExternos> listaDadosClientes) {
-		// Printa no console para melhor visualização dos dados.
+		
+		// Printa no console para melhor visualização dos dados padronizados.
 		System.out.printf("%-3s %-24s %-20s %-10s %-10s %-10s%n", "ID", "Empresa", "Nome", "Sexo", "Documento", "Nr. Documento");
 		System.out.println("------------------------------------------------------------------------------------");
 		

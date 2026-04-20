@@ -17,7 +17,6 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -33,6 +32,7 @@ import jakarta.ws.rs.core.Response.Status;
 @Tag(name = "SERVICOS EXTERNOS")
 public class MercadoLivreResource {
 
+	// Máximo de itens a ser retornado por execução para simular a rechamada.
 	private static final int QTD_MAX_LISTA = 5;
 
 	@Inject
@@ -49,7 +49,7 @@ public class MercadoLivreResource {
         gerarDadosUsuario();
     }
 
-	@POST
+	@GET
 	@Path("/gerar")
 	@Transactional(rollbackOn = Exception.class)
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -69,7 +69,7 @@ public class MercadoLivreResource {
 
 	@GET
 	@Path("/buscar/{numeroSolicitacaoSequencial}")
-	@Operation(summary = "[MERCADO LIVRE] - Busca os dados dos clientes a partir do número de solicitação", description = "Busca com os dados dos clientes cadastrados no Mercado Livre pelo numero de solicitação informado.")
+	@Operation(summary = "[MERCADO LIVRE] - Busca os dados dos clientes a partir do número de solicitação [Retorna 5 por vez]", description = "Busca com os dados dos clientes cadastrados no Mercado Livre pelo numero de solicitação informado.")
 	public Response listarDadosClientes(
 			@PathParam("numeroSolicitacaoSequencial") BigDecimal numeroSolicitacaoSequencial) throws Exception {
 

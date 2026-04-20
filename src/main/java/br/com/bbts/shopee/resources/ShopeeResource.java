@@ -32,7 +32,7 @@ public class ShopeeResource {
 
 	@GET
 	@Path("/novos/cadastros")
-	@Operation(summary = "[SHOPEE] - Busca os dados dos novos cadatros [Dados Mockado]", description = "Busca com os dados dos clientes cadastrados na Shopee.")
+	@Operation(summary = "[SHOPEE] - Busca os dados dos novos cadatros cadastrados a cada dia [Dados Mockado]", description = "Busca com os dados dos clientes cadastrados na Shopee.")
 	public Response buscarNovosClientes() throws Exception {
 
 		logger.info("Início da listagem dos dados dos clientes da Shopee.");

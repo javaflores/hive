@@ -25,6 +25,13 @@ import jakarta.transaction.Transactional;
 @ApplicationScoped
 public class HiveService {
 
+	/**
+	 * Método para retornar o último número de solicitação para ser utilizado na
+	 * rechamada do serviço do Mercado Livre.
+	 * 
+	 * @return O último número de solicitação.
+	 * @throws Exception
+	 */
 	public BigDecimal recuperarUltimaSolicitacaoDadosClienteMercadoLivre() throws Exception {
 
         // Monta os parametros do filtro.
@@ -43,6 +50,20 @@ public class HiveService {
         }
 
 		return ultimoNumeroSequencial;
+	}
+	
+	public List<ClientesExternos> listarDadosClientesNoHivePorTipoEmpresa(TipoEmpresaEnum tipoEmpresa) throws Exception {
+
+		// Busca os dados dos clientes pertencentes do tipo de empresa informado.
+		List<ClientesExternos> listaDadosClientes = ClientesExternos.list("codigoEmpresaExterno", tipoEmpresa.getCodigo());
+
+		// Formatando os dados a serem retornados.
+		listaDadosClientes.forEach(dado -> {
+			dado.setNomeTipoDocumento(TipoDocumentoEnum.getDescricaoPorCodigo(dado.getCodigoTipoDocumento()));
+			dado.setNomeTipoSexo(HiveUtils.recuperarDescricaoSexo(dado.getTipoSexo()));
+		});
+
+		return listaDadosClientes;
 	}
 	
 	public List<ClientesExternos> listarDadosClientesNoHive() throws Exception {
