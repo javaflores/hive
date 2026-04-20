@@ -5,6 +5,11 @@ Projeto utilizado para se integrar com as duas APIs externas a fim de retornar o
 ## Desenvolvimento
 
 Projeto feito utilizando Quarkus + Banco de dados interno + Panache.
+
+* Para o Mercado Livre: Os dados são persistidos na tabela utilizando sql nativo como exemplo.
+* Para a Shopee: Estes dados não estão em tabelas. São gerados utilizando o Faker
+* Para o Hive: Os dados são gravados e buscados utilizando-se do Panache.
+
 Para executar utilize o comando maven abaixo:
 
 ```bash
@@ -13,6 +18,8 @@ quarkus:dev
 
 Ao executar o comando acima, abra o navegador e execute a url `http://localhost:8080/q/swagger-ui/` para ter acesso aos serviços expostos do projeto.
 
+Configuração Docker:
+> [Não houve tempo de configurar os arquivos para o Docker.]
 ---
 
 ## Serviços Expostos na API do Hive
