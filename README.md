@@ -19,12 +19,16 @@ Ao executar o comando acima, abra o navegador e execute a url `http://localhost:
 
 Serviços Externos [São os serviços de exemplo simulando a Shopee e Mercado Livre]
 
+Retornam os dados dos clientes cadastrados nestes sistemas. 
+* Para o Mercado Livre: Estes dados estão gravados em tabela. [Dados gerados aleaóriamente]
+* Para a Shopee: Estes dados não estão em tabelas e são gerados três na hora da execução. [Dados gerados aleaóriamente]
+
 ### Mercado Livre
 
 | Tipo | URL | Parâmetros | Retorno | Descrição |
 |----------|-----------|-----------|-----------|-----------|
-| **GET** | `/mercadolivre/dados/clientes/buscar/{numeroSolicitacaoSequencial}` | numeroSolicitacao | 5 itens por requisição | Retorna os dados dos clientes a partir do número de solicitação |
-| **GET** | `/mercadolivre/dados/clientes/gerar` | Nenhum | 20 itens por requisição | Gera uma massa de dados aleaoria com 20 itens |
+| **GET** | `/mercadolivre/dados/clientes /buscar/{numeroSolicitacaoSequencial}` | numeroSolicitacao | 5 itens por requisição | Retorna os dados dos clientes a partir do número de solicitação |
+| **GET** | `/mercadolivre/dados/clientes/gerar` | Nenhum | 20 itens por requisição | Gera uma massa de dados aleatório com 20 itens |
 
 ### Shopee 
 
