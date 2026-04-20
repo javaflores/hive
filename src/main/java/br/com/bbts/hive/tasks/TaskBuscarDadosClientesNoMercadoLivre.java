@@ -7,9 +7,8 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import br.com.bbts.hive.services.HiveService;
+import br.com.bbts.hive.utils.HiveUtils;
 import io.quarkus.scheduler.Scheduled;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
@@ -62,6 +61,14 @@ public class TaskBuscarDadosClientesNoMercadoLivre {
 			hiveService.salvarDadosClientesExternosDoMercadoLivre(dadosRetorno);
 		}
 		
+		// Printa os dados somente para acompanhamento no log.
+		printarDadosTabela();
+		
 		logger.infof("Quantidade de itens gravados no hive: " + dadosRetorno.getListaClientesMercadoLivre().size());
+	}
+
+	private void printarDadosTabela() throws Exception {
+		// Busca os dados no hive e printa os dados no console.
+		HiveUtils.printarDadosClientesComoTabela(hiveService.listarDadosClientesNoHive());
 	}
 }

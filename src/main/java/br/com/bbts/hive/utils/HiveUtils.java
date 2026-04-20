@@ -1,8 +1,11 @@
 package br.com.bbts.hive.utils;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+
+import br.com.bbts.hive.entidades.ClientesExternos;
 
 /**
  * @author Ricardo da Silva Flores (BBTS)
@@ -57,5 +60,40 @@ public class HiveUtils {
 	public static LocalDate formatarData(String data) {
 		// Fazendo um parse simplificado.
 		return LocalDate.parse(data);
+	}
+	
+	public static void printarDadosClientesComoTabela(List<ClientesExternos> listaDadosClientes) {
+		// Printa no console para melhor visualização dos dados.
+		System.out.printf("%-3s %-24s %-20s %-10s %-10s %-10s%n", "ID", "Empresa", "Nome", "Sexo", "Documento", "Nr. Documento");
+		System.out.println("------------------------------------------------------------------------------------");
+		
+		// Percorre a lista dos dados do hive.
+		for (ClientesExternos dado : listaDadosClientes) {
+		    System.out.printf("%-3d %-24s %-20s %-10s %-10s %-10s%n", 
+		    		dado.getId(), 
+		    		dado.getNomeEmpresaExterno(), 
+		    		StringUtils.abbreviate(dado.getNomeCliente(), 19),
+		    		dado.getNomeTipoSexo(),
+		    		dado.getNomeTipoDocumento(),
+		    		dado.getNumeroDocumento()
+		    );
+		}
+		
+		/*
+	    "id": 16,
+	    "numeroSequencialExterno": 20261092133076924,
+	    "codigoEmpresaExterno": 1,
+	    "nomeEmpresaExterno": "Mercado Livre do Brasil",
+	    "nomeCliente": "Lou Spinka",
+	    "codigoTipoDocumento": 1,
+	    "numeroDocumento": "341813374",
+	    "dataNascimento": "1972-03-01",
+	    "nomePai": "Ms. Malik Kshlerin",
+	    "nomeMae": "Teressa Bernhard",
+	    "tipoSexo": "M",
+	    "timestampUltimaAtualizacao": "2026-04-19T21:33:07.692455",
+	    "nomeTipoDocumento": "CPF",
+	    "nomeTipoSexo": "Masculino"
+	    */
 	}
 }

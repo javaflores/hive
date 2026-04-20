@@ -36,7 +36,7 @@ public class TaskBuscarDadosClientesNaShopee {
 	@GET
 	@Path("/buscar/dados/clientes")
 	@Operation(summary = "Busca os dados dos clientes na Shopee", description = "Busca com os dados dos clientes cadastrados na Shopee.")
-	@Scheduled(every = "10s", concurrentExecution = Scheduled.ConcurrentExecution.SKIP)
+	@Scheduled(every = "30s", concurrentExecution = Scheduled.ConcurrentExecution.SKIP)
 	public void executeTask() throws Exception {
 
 		logger.info("Iniciando Task para buscar os dados dos clientes da Shopee.");
