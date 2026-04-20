@@ -29,7 +29,7 @@ public class DadosClientesService {
 	@Inject
 	ClienteDao clienteDao;
 
-	public void salvarDadosClienteMercadoLivre() throws Exception {
+	public ClienteMercadoLivre salvarDadosClienteMercadoLivre() throws Exception {
 
 		// Preenche o objeto para persistencia.
 		ClienteMercadoLivre clienteMercadoLivre = new ClienteMercadoLivre();
@@ -51,6 +51,8 @@ public class DadosClientesService {
 
 		// Salva os dados do cliente.
 		clienteDao.incluirDadosClienteMercadoLivre(clienteMercadoLivre);
+		
+		return clienteMercadoLivre;
 	}
 
 	// Feito assim somente para testes do tipo de documento.

@@ -1,9 +1,12 @@
 package br.com.bbts.hive.resources;
 
+import java.util.List;
+
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.jboss.logging.Logger;
 
+import br.com.bbts.hive.entidades.ClientesExternos;
 import br.com.bbts.hive.services.HiveService;
 import br.com.bbts.hive.utils.HiveUtils;
 import br.com.bbts.hive.utils.TipoEmpresaEnum;
@@ -37,7 +40,7 @@ public class HiveResource {
 		logger.info("Início da listagem dos dados dos clientes da shopee.");
 
 		// Buscando os dados do hive.
-		var listaDadosClientes = hiveService.listarDadosClientesNoHive();
+		List<ClientesExternos> listaDadosClientes = hiveService.listarDadosClientesNoHive();
 
 		// Printa os dados contigos no hive.
 		HiveUtils.printarDadosClientesComoTabela(listaDadosClientes);
@@ -55,7 +58,7 @@ public class HiveResource {
 		logger.info("Início da listagem dos dados dos clientes do Mercado Livre.");
 
 		// Buscando os dados do mercado livre no hive.
-		var listaDadosClientes = hiveService.listarDadosClientesNoHivePorTipoEmpresa(TipoEmpresaEnum.MERCADO_LIVRE);
+		List<ClientesExternos> listaDadosClientes = hiveService.listarDadosClientesNoHivePorTipoEmpresa(TipoEmpresaEnum.MERCADO_LIVRE);
 
 		// Printa os dados contigos no hive.
 		HiveUtils.printarDadosClientesComoTabela(listaDadosClientes);
@@ -73,7 +76,7 @@ public class HiveResource {
 		logger.info("Início da listagem dos dados dos clientes da shopee.");
 
 		// Buscando os dados da Shopee no hive.
-		var listaDadosClientes = hiveService.listarDadosClientesNoHivePorTipoEmpresa(TipoEmpresaEnum.SHOPEE);
+		List<ClientesExternos> listaDadosClientes = hiveService.listarDadosClientesNoHivePorTipoEmpresa(TipoEmpresaEnum.SHOPEE);
 
 		// Printa os dados contigos no hive.
 		HiveUtils.printarDadosClientesComoTabela(listaDadosClientes);
@@ -82,5 +85,4 @@ public class HiveResource {
 
 		return Response.status(Status.OK).entity(listaDadosClientes).build();
 	}
-
 }

@@ -1,6 +1,7 @@
 package br.com.bbts.mercadolivre.resources;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -55,16 +56,22 @@ public class MercadoLivreResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Operation(summary = "[MERCADO LIVRE] - Gera 20 dados de cliente aleatórios.", description = "Cadastra os dados dos clientes de forma aleatória no Mercado Livre.")
 	public Response gerarDadosUsuario() throws Exception {
+		
+		// Lista dos dados dos clientes.
+		var dadosCLientesGerados = new ArrayList<>();
 
 		// Percorre e cadastra os dados de forma aleatória para testes.
 		for (int i = 0; i < 20; i++) {
 			
-			// Salva uma publicacao completa.
-			dadosClientesService.salvarDadosClienteMercadoLivre();
+			// Salva os dados do cliente.
+			var dadoCliente = dadosClientesService.salvarDadosClienteMercadoLivre();
+			
+			// Inclui na lista.
+			dadosCLientesGerados.add(dadoCliente);
 		}
 
-		// Retorna os dados do usuario com seu ID.
-		return Response.status(Status.OK).entity("OK").build();
+		// Retorna a lista dos dados dos usuarios gerados.
+		return Response.status(Status.OK).entity(dadosCLientesGerados).build();
 	}
 
 	@GET

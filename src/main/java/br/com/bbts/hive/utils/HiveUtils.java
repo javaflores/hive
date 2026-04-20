@@ -65,12 +65,14 @@ public class HiveUtils {
 	public static void printarDadosClientesComoTabela(List<ClientesExternos> listaDadosClientes) {
 		
 		// Printa no console para melhor visualização dos dados padronizados.
-		System.out.printf("%-3s %-24s %-20s %-10s %-10s %-10s%n", "ID", "Empresa", "Nome", "Sexo", "Documento", "Nr. Documento");
-		System.out.println("------------------------------------------------------------------------------------");
+		System.out.println("\r");
+		System.out.println("|================ SOMENTE PARA VISUALIZAÇÃO DO MOTOR EM FUNCIONAMENTO ================|");
+		System.out.printf("|%-3s %-24s %-20s %-10s %-10s %-10s%n", "ID", "Empresa", "Nome", "Sexo", "Documento", "Nr. Documento|");
+		System.out.println("|=====================================================================================|");
 		
 		// Percorre a lista dos dados do hive.
 		for (ClientesExternos dado : listaDadosClientes) {
-		    System.out.printf("%-3d %-24s %-20s %-10s %-10s %-10s%n", 
+		    System.out.printf("|%-3d %-24s %-20s %-10s %-10s %-10s%n", 
 		    		dado.getId(), 
 		    		dado.getNomeEmpresaExterno(), 
 		    		StringUtils.abbreviate(dado.getNomeCliente(), 19),
@@ -79,6 +81,8 @@ public class HiveUtils {
 		    		dado.getNumeroDocumento()
 		    );
 		}
+		
+		System.out.println("|======================================== FIM ========================================|\n");
 		
 		/*
 	    "id": 16,

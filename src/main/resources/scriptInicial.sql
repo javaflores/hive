@@ -34,3 +34,19 @@ create table CLIENTES_EXTERNOS (
     TS_ULT_ATUALIZACAO timestamp(6),
     primary key (ID)
 );
+
+-- INSERTS DA TABELA DE CLIENTES DO MERCADO LIVRE
+INSERT INTO ClienteMercadoLivre (numeroSolicitacao, nome, codigoTipoDocumento, numeroDocumento, dataNascimento, nomePai, nomeMae, sexo, timestampAtualizacao)
+VALUES (20261101510561790, 'João da Silva', 1, '12345678900', '1990-05-15', 'Carlos da Silva', 'Maria da Silva', 'M', '2026-04-20 13:37:47.013348');
+
+INSERT INTO ClienteMercadoLivre (numeroSolicitacao, nome, codigoTipoDocumento, numeroDocumento, dataNascimento, nomePai, nomeMae, sexo, timestampAtualizacao)
+VALUES (20261101510561812, 'Ana Souza Pereira', 2, '30843022000184', '1985-10-22', 'José Pereira', 'Lucia Souza', 'F', '2026-04-20 13:38:11.153412');
+
+-- INSERTS DA TABELA DE CLIENTES PADRONIZADAS DO HIVE
+INSERT INTO CLIENTES_EXTERNOS (NR_SEQUENCIAL_EXTERNO, CD_EMPRESA_EXTERNO, NM_EMPRESA_EXTERNO, DS_NOME, CD_TIPO_DOCUMENTO, NR_DOCUMENTO, DT_NASCIMENTO, NM_PAI, NM_MAE, TP_SEXO, TS_ULT_ATUALIZACAO)
+VALUES (0, 2, 'Shopee LTDA', 'Carlos Eduardo Lima', 1, '12345678900', '1992-03-10', 'Roberto Lima', 'Fernanda Lima', 'M', '2026-04-19 09:08:38.988882');
+
+INSERT INTO CLIENTES_EXTERNOS (NR_SEQUENCIAL_EXTERNO, CD_EMPRESA_EXTERNO, NM_EMPRESA_EXTERNO, DS_NOME, CD_TIPO_DOCUMENTO, NR_DOCUMENTO, DT_NASCIMENTO, NM_PAI, NM_MAE, TP_SEXO, TS_ULT_ATUALIZACAO)
+VALUES (20261101510560920, 1, 'Mercado Livre do Brasil', 'Juliana Martins Souza', 3, 'US31220', '2019-07-25', 'Paulo Souza', 'Marcia Martins', 'F', '2026-04-19 10:54:12.625541');
+
+

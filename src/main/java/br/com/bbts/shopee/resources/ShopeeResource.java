@@ -58,7 +58,7 @@ public class ShopeeResource {
 		// Criando uma resposta com 3 itens.
 		for (int i = 0; i < 3; i++) {
 			var cliente = new ClienteShopeeDTO();
-			cliente.setGenderType(ThreadLocalRandom.current().nextInt(1, 3));
+			cliente.setGenderType(ThreadLocalRandom.current().nextInt(1, 4));
 			cliente.setPassportNumber("US".concat(String.valueOf(ThreadLocalRandom.current().nextInt(10000, 100000))));
 			cliente.setSocialSecurityNumber(ThreadLocalRandom.current().nextInt(10000, 1000000));
 
